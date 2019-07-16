@@ -1,0 +1,15 @@
+@import '../../assests/styles/base.scss';
+
+.menu_header {
+  height: 100%;
+  width: 100%;
+  background-color: $primary-dark-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_brand {
+    color: $text;
+    font-weight: 500;
+  }
+}

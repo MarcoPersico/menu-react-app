@@ -1,0 +1,24 @@
+@import '../assests/styles/base.scss';
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $primary-light-color;
+  border-radius: 0px 15px 15px 0px;
+  height: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 123, 123); 
+  transition: all .4s;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(255, 94, 94); 
+}

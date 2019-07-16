@@ -1,0 +1,22 @@
+.menu_recipeCard {
+  p,
+  h3 {
+    margin: 0;
+  }
+
+  height: 100%;
+  overflow-y: scroll;
+
+  &_wrapper {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+  }
+
+  &_thumbnail {
+    img {
+      width: 100%;
+      height: 400px;
+    }
+  }
+}

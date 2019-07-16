@@ -1,0 +1,28 @@
+@import '../../../assests/styles/base.scss';
+
+.menu_ingridientList {
+  position: relative;
+  height: 100%;
+  padding-bottom: 15px;
+  display: grid;
+
+  &_wrapper {
+    padding: 0 25px;
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(auto-fill, 135px);
+
+    @include medium-screen() {
+      grid-template-columns: repeat(auto-fill, 180px);
+      padding: 0 10px;
+    }
+
+    @include extra-large-screen() {
+      grid-template-columns: repeat(auto-fill, 170px);
+      padding: 0 5px;
+      justify-content: center;
+    }
+    grid-row-gap: 15px;
+    grid-column-gap: 30px;
+  }
+}

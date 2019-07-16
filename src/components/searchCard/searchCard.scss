@@ -1,0 +1,16 @@
+@import "../../assests/styles/base.scss";
+
+.menu_searchCard {
+  ul,
+  li,
+  span,
+  p,
+  input,
+  button {
+    margin: 0;
+  }
+  height: 100px;
+  min-height: 100%;
+  overflow-y: scroll;
+  background-color: $primary-light-color;
+}

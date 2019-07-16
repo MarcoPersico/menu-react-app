@@ -1,0 +1,55 @@
+@import "../../assests/styles/base.scss";
+
+.menu_main {
+  display: grid;
+  grid-template-rows: 10vh 90vh;
+  
+  &_wrapper {
+    padding: 25px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 15px;
+    background-color: $primary-color;
+
+    @include medium-screen() {
+      grid-gap: 50px;
+      grid-template-rows: 1fr;
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+
+  &_rightMenu {
+    max-height: 100%;
+    -webkit-box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
+  }
+
+  &_leftMenu {
+    position: relative;
+    max-height: 100%;
+    -webkit-box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
+
+    &_search {
+      cursor: pointer;
+      position: absolute;
+      width: 100%;
+      height: 60px;
+      margin: 0;
+      bottom: 0;
+      border: 1px solid transparent;
+      background-color: $accent-color;
+      color: $text;
+      font-weight: bold;
+      transition: all 0.4s;
+
+      &:hover {
+        background-color: $primary-light-color;
+        color: $primary-text-color;
+        border-top-color: $accent-color;
+      }
+    }
+  }
+}
