@@ -1,0 +1,11 @@
+.menu_recipe {
+  padding: 10px 25px;
+  max-height: 100%;
+  overflow-y: scroll;
+
+  &_steps {
+    p {
+      margin: 8px 0px;
+    }
+  }
+}

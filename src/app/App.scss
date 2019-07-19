@@ -14,11 +14,11 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(255, 123, 123); 
+  background: $primary-dark-color; 
   transition: all .4s;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(255, 94, 94); 
+  background: $primary-light-color; 
 }

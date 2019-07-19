@@ -7,22 +7,22 @@
   display: grid;
 
   &_wrapper {
-    padding: 0 25px;
+    padding: 0px 25px 80px;
     display: grid;
     height: 100%;
     grid-template-columns: repeat(auto-fill, 135px);
 
     @include medium-screen() {
       grid-template-columns: repeat(auto-fill, 180px);
-      padding: 0 10px;
+      padding: 0 10px 80px;
     }
 
     @include extra-large-screen() {
       grid-template-columns: repeat(auto-fill, 170px);
-      padding: 0 5px;
+      padding: 0 5px 80px;
       justify-content: center;
     }
-    grid-row-gap: 15px;
+    grid-row-gap: 10px;
     grid-column-gap: 30px;
   }
 }

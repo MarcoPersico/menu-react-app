@@ -2,24 +2,29 @@
 
 .menu_main {
   display: grid;
-  grid-template-rows: 10vh 90vh;
-  
+  min-height: 100vh;
+  grid-template-rows: 40px 1000px;
+
   &_wrapper {
     padding: 25px;
     display: grid;
     grid-template-rows: 1fr 1fr;
-    grid-gap: 15px;
+    grid-gap: 50px;
     background-color: $primary-color;
+  }
 
-    @include medium-screen() {
+  @include medium-screen() {
+    grid-template-rows: 10vh 90vh;
+    
+    &_wrapper {
       grid-gap: 50px;
-      grid-template-rows: 1fr;
+      grid-template-rows: 550px;
       grid-template-columns: 1fr 2fr;
     }
   }
 
   &_rightMenu {
-    max-height: 100%;
+    max-height: 1fr;
     -webkit-box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
     box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
@@ -40,15 +45,15 @@
       margin: 0;
       bottom: 0;
       border: 1px solid transparent;
-      background-color: $accent-color;
+      background-color: $primary-dark-color;
       color: $text;
       font-weight: bold;
       transition: all 0.4s;
 
       &:hover {
         background-color: $primary-light-color;
-        color: $primary-text-color;
-        border-top-color: $accent-color;
+        color: $primary-dark-color;
+        border-top-color: $primary-dark-color;
       }
     }
   }

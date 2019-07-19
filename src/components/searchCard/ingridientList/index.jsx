@@ -18,6 +18,9 @@ export default function ingridientList() {
         <IngridientItem ingridientName='Milk' />
         <IngridientItem ingridientName='Something Else' />
         <IngridientItem ingridientName='Another stuff' />
+        <IngridientItem ingridientName='Another stuff' />
+        <IngridientItem ingridientName='Another stuff' />
+        <IngridientItem ingridientName='Another stuff' />
       </div>
     </div>
   );
