@@ -1,6 +1,7 @@
 @import '../../../../assests/styles/base.scss';
 
 .menu_ingridientItem {
+  font-family: $secondary-font;
   cursor: pointer;
   position: relative;
   display: grid;
@@ -31,7 +32,6 @@
     padding-right: 15px;
     align-self: center;
     justify-self: center;
-    font-weight: bold;
   }
 
   button {
