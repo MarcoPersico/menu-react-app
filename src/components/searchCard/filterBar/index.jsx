@@ -1,13 +1,39 @@
 import React from 'react';
+import Select from 'react-select';
 
 // Styles
 import './filterBar.scss';
 
-export default function FilterBar() {
-  return (
-    <div className='menu_searchCard_filterBar'>{/** TODO: Component for the filter bar */}
-      <input type='text' placeholder='Please Enter any ingridient' />
-      <button>+</button>
-    </div>
-  );
+import ingridients from '../../../mockedIngridients.json';
+
+class FilterBar extends React.Component {
+  constructor() {
+    super();
+
+    this.ingridients = React.createRef();
+  }
+
+  setIngridientItem() {
+    this.props.onIngridientAdded(this.ingridients.current.state.value);
+  }
+
+  render() {
+    console.log()
+    return (
+      <div className='menu_searchCard_filterBar'>
+        <div className='menu_searchCard_filterBar_autosuggestWrapper'>
+          <Select
+            isMulti
+            name='ingridients'
+            options={ingridients}
+            classNamePrefix='select'
+            ref={this.ingridients}
+          />
+        </div>
+        <button onClick={() => this.setIngridientItem()}>+</button>
+      </div>
+    );
+  }
 }
+
+export default FilterBar;

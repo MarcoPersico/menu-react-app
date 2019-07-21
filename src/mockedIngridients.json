@@ -1,0 +1,30 @@
+[
+  {
+    "value": 1,
+    "label": "Eggs"
+  },
+  {
+    "value": 2,
+    "label": "Carrots"
+  },
+  {
+    "value": 3,
+    "label": "Milk"
+  },
+  {
+    "value": 4,
+    "label": "Flour"
+  },
+  {
+    "value": 5,
+    "label": "Potatoes"
+  },
+  {
+    "value": 6,
+    "label": "Onions"
+  },
+  {
+    "value": 7,
+    "label": "Olive Oil"
+  }
+]
