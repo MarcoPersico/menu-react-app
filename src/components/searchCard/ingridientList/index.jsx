@@ -6,22 +6,48 @@ import IngridientItem from './ingridientItem';
 // Styles
 import './ingridientList.scss';
 
-export default function ingridientList() {
-  return (
-    <div className='menu_ingridientList'>
-      <div className='menu_ingridientList_wrapper'>
-        <IngridientItem ingridientName='Onions' />
-        <IngridientItem ingridientName='Eggs' />
-        <IngridientItem ingridientName='Carrots' />
-        <IngridientItem ingridientName='Potatos'/>
-        <IngridientItem ingridientName='Flour' />
-        <IngridientItem ingridientName='Milk' />
-        <IngridientItem ingridientName='Something Else' />
-        <IngridientItem ingridientName='Another stuff' />
-        <IngridientItem ingridientName='Another stuff' />
-        <IngridientItem ingridientName='Another stuff' />
-        <IngridientItem ingridientName='Another stuff' />
+class IngridientList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      ingridientItems: [],
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.ingridientItem !== this.props.ingridientItem
+      && this.props.ingridientItem) {
+      this.setState({
+        ingridientItems: this.props.ingridientItem.map(value => value),
+      });
+    } else if (
+      prevProps.ingridientItem !== this.props.ingridientItem
+      && !this.props.ingridientItem) {
+      this.setState({
+        ingridientItems: [],
+      })
+    }
+  }
+
+  renderIngridients(value) {
+    if (value) {
+      return (
+        <IngridientItem key={value.value} ingridientName={value.label} />
+      );
+    }
+  }
+
+  render() {
+    return (
+      <div className='menu_ingridientList'>
+        <div className='menu_ingridientList_wrapper'>
+          {this.state.ingridientItems.map((value) => this.renderIngridients(value))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+export default IngridientList;
