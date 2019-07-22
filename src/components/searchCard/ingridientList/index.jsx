@@ -13,8 +13,6 @@ class IngridientList extends React.Component {
     this.state = {
       ingridientItems: [],
     }
-
-    this.setSelectedIngridients = this.setSelectedIngridients.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -41,8 +39,8 @@ class IngridientList extends React.Component {
     }
   }
 
-  setSelectedIngridients() {
-    this.props.onSearchClicked(this.state.ingridientItems);
+  setIngridients() {
+    this.props.onSearchClick(this.state.ingridientItems);
   }
 
   render() {
@@ -53,8 +51,8 @@ class IngridientList extends React.Component {
         </div>
 
         <button
-          onClick={this.setSelectedIngridients}
           className='menu_main_leftMenu_search'
+          onClick={this.setIngridients}
         >
           Search Recipes
         </button>

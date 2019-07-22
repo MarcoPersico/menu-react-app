@@ -37,23 +37,7 @@ class RecipeCard extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     debugger;
     if (!prevState.firstTime || prevProps.currentIngridients !== this.props.currentIngridients) {
-      function compare(arrOne, arrTwo) {
-        let finalArray = [];
 
-        arrOne.forEach(value => {
-          arrTwo.forEach(val => {
-            if (value === val) {
-              finalArray.push(value);
-            }
-          })
-        })
-
-        if (isEqual(finalArray, arrOne)) {
-          return true;
-        }
-
-        return false;
-      }
 
       recipes.forEach(value => {
         if (compare(value.ingridients, this.props.currentIngridients)) {

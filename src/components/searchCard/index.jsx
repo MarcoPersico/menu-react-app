@@ -30,18 +30,15 @@ class SearchCard extends React.Component {
   getSelectedIngridients(value) {
     value.forEach(val => {
       this.selectedIngridients.push(val.label);
-    })
+    });
 
     this.setState({
       ingridientsSelected: this.selectedIngridients,
-    })
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.ingridientsSelected.length !== 0
-    && prevState.ingridientsSelected !== this.state.ingridientsSelected) {
-      this.props.onButtonClicked(this.state.ingridientsSelected);
-    }
+    
   }
 
   render() {
@@ -54,7 +51,7 @@ class SearchCard extends React.Component {
           />
           <IngridientList
             ingridientItem={this.state.ingridientItem}
-            onSearchClicked={this.getSelectedIngridients}
+            onSearchClick={this.getSelectedIngridients}
           />
         </div>
       </div>
