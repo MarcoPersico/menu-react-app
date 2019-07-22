@@ -13,6 +13,8 @@ class IngridientList extends React.Component {
     this.state = {
       ingridientItems: [],
     }
+
+    this.setSelectedIngridients = this.setSelectedIngridients.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -39,12 +41,23 @@ class IngridientList extends React.Component {
     }
   }
 
+  setSelectedIngridients() {
+    this.props.onSearchClicked(this.state.ingridientItems);
+  }
+
   render() {
     return (
       <div className='menu_ingridientList'>
         <div className='menu_ingridientList_wrapper'>
           {this.state.ingridientItems.map((value) => this.renderIngridients(value))}
         </div>
+
+        <button
+          onClick={this.setSelectedIngridients}
+          className='menu_main_leftMenu_search'
+        >
+          Search Recipes
+        </button>
       </div>
     );
   }

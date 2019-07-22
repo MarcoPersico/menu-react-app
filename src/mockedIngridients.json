@@ -26,5 +26,13 @@
   {
     "value": 7,
     "label": "Olive Oil"
+  },
+  {
+    "value": 8,
+    "label": "Salt"
+  },
+  {
+    "value": 9,
+    "label": "Cheese"
   }
 ]
