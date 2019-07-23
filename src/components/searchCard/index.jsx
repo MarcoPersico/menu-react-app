@@ -1,4 +1,5 @@
 import React from 'react';
+import Utils from '../utils/utils';
 
 // Ingridients
 import ingridients from '../../mockedIngridients.json';
@@ -21,6 +22,7 @@ class SearchCard extends React.Component {
     };
     this.getIngridientItem = this.getIngridientItem.bind(this);
     this.getSelectedIngridients = this.getSelectedIngridients.bind(this);
+    this.Utils = new Utils();
   }
 
   getIngridientItem(value) {
@@ -28,6 +30,7 @@ class SearchCard extends React.Component {
   }
 
   getSelectedIngridients(value) {
+    this.selectedIngridients = [];
     value.forEach(val => {
       this.selectedIngridients.push(val.label);
     });
@@ -38,7 +41,10 @@ class SearchCard extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    
+    debugger;
+    if (this.state.ingridientsSelected.length !== 0) {
+      this.props.onSearchClick(this.state.ingridientsSelected);
+    }
   }
 
   render() {

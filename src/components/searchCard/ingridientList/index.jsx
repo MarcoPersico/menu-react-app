@@ -13,6 +13,7 @@ class IngridientList extends React.Component {
     this.state = {
       ingridientItems: [],
     }
+    this.setIngridients = this.setIngridients.bind(this);
   }
 
   componentDidUpdate(prevProps) {

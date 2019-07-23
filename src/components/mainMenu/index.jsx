@@ -16,14 +16,25 @@ class MainMenu extends React.Component {
     this.state = { selectedIngridients: [] };
   }
 
+  getIngridients(value) {
+    this.selectedIngridients = [];
+    value.forEach(elem => {
+      this.selectedIngridients.push(elem);
+    })
+
+    this.setState({
+      selectedIngridients: this.selectedIngridients,
+    })
+  }
+
   render() {
-    console.log(this.state.selectedIngridients);
     return (
       <div className='menu_main'>
         <Header />
         <div className='menu_main_wrapper'>
           <div className='menu_main_leftMenu'>
-            <SearchCard 
+            <SearchCard
+              onSearchClick={this.getIngridients}
             />
           </div>
           <div className='menu_main_rightMenu'>

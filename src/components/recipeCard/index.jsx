@@ -1,5 +1,5 @@
 import React from 'react';
-import isEqual from 'lodash.isequal';
+import Utils from '../utils/utils';
 
 // Styles
 import './recipeCard.scss';
@@ -22,6 +22,7 @@ class RecipeCard extends React.Component {
     };
 
     this.state = { currentRecipe: {}, firstTime: true }
+    this.Utils = new Utils();
   }
 
   componentWillMount() {
@@ -30,27 +31,10 @@ class RecipeCard extends React.Component {
     Object.assign(this.currentRecipe, recipes[random]);
     this.setState({
       currentRecipe: this.currentRecipe,
-      firstTime: false,
     })
   }
 
   componentDidUpdate(prevProps, prevState) {
-    debugger;
-    if (!prevState.firstTime || prevProps.currentIngridients !== this.props.currentIngridients) {
-
-
-      recipes.forEach(value => {
-        if (compare(value.ingridients, this.props.currentIngridients)) {
-
-          Object.assign(this.currentRecipe, value)
-        }
-      })
-      this.setState({
-        currentRecipe: this.currentRecipe,
-        firstTime: true,
-      });
-    }
-
   }
 
   render() {
