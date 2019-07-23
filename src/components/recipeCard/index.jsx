@@ -13,7 +13,7 @@ import Recipe from './recipe';
 class RecipeCard extends React.Component {
   constructor(props) {
     super(props);
-
+    this.currentIngridients = [];
     this.currentRecipe = {
       thumbnail: '',
       name: '',
@@ -31,24 +31,45 @@ class RecipeCard extends React.Component {
     Object.assign(this.currentRecipe, recipes[random]);
     this.setState({
       currentRecipe: this.currentRecipe,
-    })
+    });
   }
-
+  
   componentDidUpdate(prevProps, prevState) {
+    if (prevProps.currentIngridients.length === 0) {
+      this.currentIngridients = [];
+      recipes.forEach(value => {
+        if (this.Utils.compare(value.ingridients, this.props.currentIngridients)) {
+          Object.assign(this.currentRecipe, value);
+          this.setState({
+            currentRecipe: this.currentRecipe,
+          });   
+        }
+      });
+    } else if (this.Utils.compare(prevProps.currentIngridients, this.props.currentIngridients)) {
+      console.log('update')
+    }
   }
 
+  renderRecipe(currentRecipe) {
+    if (currentRecipe) {
+      return (
+          <div className='menu_recipeCard'>
+            <img
+              className='menu_recipeCard_thumbnail'
+              src={currentRecipe.thumbnail}
+              alt='recipe thumbnail'
+            />
+            <Recipe
+              recipeData={currentRecipe}
+            />
+          </div>
+      );
+    }
+    return null;
+  }
   render() {
     return (
-      <div className='menu_recipeCard'>
-        <img
-          className='menu_recipeCard_thumbnail'
-          src={this.state.currentRecipe.thumbnail}
-          alt='recipe thumbnail'
-        />
-        <Recipe
-          recipeData={this.state.currentRecipe}
-        />
-      </div>
+        this.renderRecipe(this.state.currentRecipe)
     );
   }
 }

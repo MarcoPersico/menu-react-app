@@ -14,6 +14,7 @@ class MainMenu extends React.Component {
 
     this.selectedIngridients = [];
     this.state = { selectedIngridients: [] };
+    this.getIngridients = this.getIngridients.bind(this);
   }
 
   getIngridients(value) {
@@ -35,6 +36,7 @@ class MainMenu extends React.Component {
           <div className='menu_main_leftMenu'>
             <SearchCard
               onSearchClick={this.getIngridients}
+              currentIngridients={this.state.selectedIngridients}
             />
           </div>
           <div className='menu_main_rightMenu'>
