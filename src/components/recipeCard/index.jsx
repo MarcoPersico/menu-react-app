@@ -71,14 +71,16 @@ class RecipeCard extends React.Component {
   }
 
   renderRecipe(currentRecipe) {
+    console.log(currentRecipe.thumbnail)
     if (currentRecipe) {
+      const thumbnail = {
+        backgroundImage: `url(${currentRecipe.thumbnail})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
+      }
       return (
         <div className='menu_recipeCard'>
-          <img
-            className='menu_recipeCard_thumbnail'
-            src={currentRecipe.thumbnail}
-            alt='recipe thumbnail'
-          />
+          <div style={thumbnail} className='menu_recipeCard_thumbnail'/>
           <Recipe
             recipeData={currentRecipe}
           />
