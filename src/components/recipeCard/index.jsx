@@ -25,6 +25,8 @@ class RecipeCard extends React.Component {
     this.state = { currentRecipe: {}, noRecipeFound: false }
     this.Utils = new Utils();
     this.renderModal = this.renderModal.bind(this);
+    this.updateModalStatus = this.updateModalStatus.bind(this);
+    this.setRecipe = this.setRecipe.bind(this);
   }
 
   componentWillMount() {
@@ -37,36 +39,34 @@ class RecipeCard extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.currentIngridients.length === 0) {
-      this.currentIngridients = [];
-      recipes.forEach(value => {
-        if (this.Utils.compare(value.ingridients, this.props.currentIngridients)) {
-          Object.assign(this.currentRecipe, value);
-          this.setState({
-            currentRecipe: this.currentRecipe,
-          });
-        } else {
-          this.setState({ noRecipeFound: true });
-        }
-      });
-    } else if (!this.Utils.compare(prevProps.currentIngridients, this.props.currentIngridients)) {
-      this.currentIngridients = [];
-      recipes.forEach(value => {
-        if (this.Utils.compare(value.ingridients, this.props.currentIngridients)) {
-          Object.assign(this.currentRecipe, value);
-          this.setState({
-            currentRecipe: this.currentRecipe,
-          });
-        } else {
-          this.setState({ noRecipeFound: true });
-        }
-      });
+    if (prevProps.currentIngridients.length === 0 ||
+      !this.Utils.compare(prevProps.currentIngridients, this.props.currentIngridients)) {
+      this.setRecipe();
     }
+  }
+
+  setRecipe() {
+    let currentRecipe = this.currentRecipe.name;
+    recipes.forEach(value => {
+      if (this.Utils.compare(value.ingridients, this.props.currentIngridients)) {
+        Object.assign(this.currentRecipe, value);
+        this.setState({
+          currentRecipe: this.currentRecipe,
+        });
+      }
+    });
+    if (this.state.currentRecipe.name === currentRecipe) {
+      this.updateModalStatus(true);
+    }
+  }
+
+  updateModalStatus(value) {
+    this.setState({ noRecipeFound: value })
   }
 
   renderModal() {
     if (this.state.noRecipeFound) {
-      return <Modal />
+      return <Modal onButtonClick={this.updateModalStatus} />
     }
   }
 
@@ -87,6 +87,7 @@ class RecipeCard extends React.Component {
     }
     return null;
   }
+
   render() {
     return (
       <div>

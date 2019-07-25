@@ -13,7 +13,7 @@
 
     @include medium-screen() {
       grid-template-columns: repeat(auto-fill, 180px);
-      padding: 0 10px 80px;
+      padding: 0 0 80px 8px;
     }
 
     @include extra-large-screen() {

@@ -3,12 +3,12 @@ import React from 'react';
 // Styles
 import './modal.scss';
 
-export default function Modal() {
+export default function Modal(props) {
   return (
     <div className='menu_recipe_modal'>
       <div className='menu_recipe_modal_modalWindow'>
-        <p>Oops parece que no existe una receta con esos ingredientes :(</p>
-        <button>Aceptar</button>
+        <p>Oops parece que no tenemos registro de una receta con esos ingredientes :(</p>
+        <button onClick={() => props.onButtonClick(false)}>Aceptar</button>
       </div>
     </div>
   );
