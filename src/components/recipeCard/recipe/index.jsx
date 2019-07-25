@@ -11,7 +11,7 @@ export default function Recipe(props) {
       <div className='menu_recipe_steps'>
         <ol>
           {recipeData.steps.map(
-            value => <li key={recipeData.steps.indexOf(value)}>{value}</li>
+            value => <li  key={recipeData.steps.indexOf(value)}>{value}</li>
           )}
         </ol>
       </div>

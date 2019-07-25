@@ -33,13 +33,13 @@ class MainMenu extends React.Component {
       <div className='menu_main'>
         <Header />
         <div className='menu_main_wrapper'>
-          <div className='menu_main_leftMenu'>
+          <div className='menu_main_leftMenu animated fadeIn'>
             <SearchCard
               onSearchClick={this.getIngridients}
               currentIngridients={this.state.selectedIngridients}
             />
           </div>
-          <div className='menu_main_rightMenu'>
+          <div className='menu_main_rightMenu animated fadeIn'>
             <RecipeCard
               currentIngridients={this.state.selectedIngridients}
             />

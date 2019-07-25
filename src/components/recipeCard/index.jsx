@@ -10,6 +10,7 @@ import recipes from '../../recipes.json';
 // Components
 import Recipe from './recipe';
 import Modal from './modal';
+import Spinner from './spinner';
 
 class RecipeCard extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class RecipeCard extends React.Component {
       steps: '',
     };
 
-    this.state = { currentRecipe: {}, noRecipeFound: false }
+    this.state = { currentRecipe: {}, noRecipeFound: false, isLoading: false }
     this.Utils = new Utils();
     this.renderModal = this.renderModal.bind(this);
     this.updateModalStatus = this.updateModalStatus.bind(this);
@@ -46,18 +47,24 @@ class RecipeCard extends React.Component {
   }
 
   setRecipe() {
+    this.setState({ isLoading: true });
     let currentRecipe = this.currentRecipe.name;
-    recipes.forEach(value => {
-      if (this.Utils.compare(value.ingridients, this.props.currentIngridients)) {
-        Object.assign(this.currentRecipe, value);
-        this.setState({
-          currentRecipe: this.currentRecipe,
-        });
+    setTimeout(() => {
+      recipes.forEach(value => {
+        if (this.Utils.compare(value.ingridients, this.props.currentIngridients)) {
+          Object.assign(this.currentRecipe, value);
+          this.setState({
+            currentRecipe: this.currentRecipe,
+          });
+        }
+      });
+
+      this.setState({ isLoading: false });
+      if (this.state.currentRecipe.name === currentRecipe) {
+        this.updateModalStatus(true);
+        this.setState({ isLoading: false });
       }
-    });
-    if (this.state.currentRecipe.name === currentRecipe) {
-      this.updateModalStatus(true);
-    }
+    }, 2000)
   }
 
   updateModalStatus(value) {
@@ -70,8 +77,14 @@ class RecipeCard extends React.Component {
     }
   }
 
+  renderSpinner() {
+    if (this.state.isLoading) {
+      return <Spinner />;
+    }
+    return null;
+  }
+
   renderRecipe(currentRecipe) {
-    console.log(currentRecipe.thumbnail)
     if (currentRecipe) {
       const thumbnail = {
         backgroundImage: `url(${currentRecipe.thumbnail})`,
@@ -80,7 +93,7 @@ class RecipeCard extends React.Component {
       }
       return (
         <div className='menu_recipeCard'>
-          <div style={thumbnail} className='menu_recipeCard_thumbnail'/>
+          <div style={thumbnail} className='menu_recipeCard_thumbnail' />
           <Recipe
             recipeData={currentRecipe}
           />
@@ -93,6 +106,7 @@ class RecipeCard extends React.Component {
   render() {
     return (
       <div>
+        {this.renderSpinner()}
         {this.renderRecipe(this.state.currentRecipe)}
         {this.renderModal()}
       </div>
