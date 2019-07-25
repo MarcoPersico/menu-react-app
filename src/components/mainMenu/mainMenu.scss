@@ -18,16 +18,20 @@
     
     &_wrapper {
       grid-gap: 50px;
-      grid-template-rows: 550px;
+      grid-template-rows: 80vh;
       grid-template-columns: 1fr 2fr;
     }
   }
 
   &_rightMenu {
-    max-height: 1fr;
+    max-height: 100%;
     -webkit-box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
     box-shadow: 2px 4px 5px 2px rgba(0, 0, 0, 0.15);
+
+    div:first-child {
+      height: 100%;
+    }
   }
 
   &_leftMenu {
@@ -45,6 +49,8 @@
       margin: 0;
       bottom: 0;
       border: 1px solid transparent;
+      border-right: 5px solid transparent;
+      border-left: 5px solid transparent;
       background-color: $primary-dark-color;
       color: $text;
       font-weight: bold;
@@ -53,7 +59,7 @@
       &:hover {
         background-color: $primary-light-color;
         color: $primary-dark-color;
-        border-top-color: $primary-dark-color;
+        border-color: $primary-dark-color;
       }
     }
   }

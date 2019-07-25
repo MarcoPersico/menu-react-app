@@ -13,6 +13,12 @@ class IngridientList extends React.Component {
     this.state = {
       ingridientItems: [],
     }
+    this.setIngridients = this.setIngridients.bind(this);
+    this.searchButton = React.createRef();
+  }
+
+  componentDidMount() {
+    this.searchButton.current.disabled = true;
   }
 
   componentDidUpdate(prevProps) {
@@ -33,9 +39,16 @@ class IngridientList extends React.Component {
 
   renderIngridients(value) {
     if (value) {
+      this.searchButton.current.disabled = false;
       return (
         <IngridientItem key={value.value} ingridientName={value.label} />
       );
+    }
+  }
+
+  setIngridients() {
+    if (this.state.ingridientItems.length) {
+      this.props.onSearchClick(this.state.ingridientItems);
     }
   }
 
@@ -45,6 +58,14 @@ class IngridientList extends React.Component {
         <div className='menu_ingridientList_wrapper'>
           {this.state.ingridientItems.map((value) => this.renderIngridients(value))}
         </div>
+
+        <button
+          className='menu_main_leftMenu_search'
+          onClick={this.setIngridients}
+          ref={this.searchButton}
+        >
+          Search Recipes
+        </button>
       </div>
     );
   }

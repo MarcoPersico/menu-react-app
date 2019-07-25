@@ -18,7 +18,6 @@ class FilterBar extends React.Component {
   }
 
   render() {
-    console.log()
     return (
       <div className='menu_searchCard_filterBar'>
         <div className='menu_searchCard_filterBar_autosuggestWrapper'>
