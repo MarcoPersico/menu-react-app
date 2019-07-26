@@ -10,6 +10,10 @@ import IngridientList from './ingridientList';
 // Styles
 import './searchCard.scss';
 
+/**
+ * This class is the SearchCard component
+ * Displays a filter bar and a list with the selected ingridients
+ */
 class SearchCard extends React.Component {
   constructor() {
     super();
@@ -22,10 +26,20 @@ class SearchCard extends React.Component {
     this.getSelectedIngridients = this.getSelectedIngridients.bind(this);
   }
 
+  /**
+   * Callback Method to get the ingridient item with the ingridient selected
+   * 
+   * @param {String} value 
+   */
   getIngridientItem(value) {
     this.setState({ ingridientItem: value });
   }
 
+  /**
+   * This method get the current array of ingridients and push into 
+   * auxiliar array
+   * @param {*} value 
+   */
   getSelectedIngridients(value) {
     this.selectedIngridients = [];
     value.forEach(val => {
@@ -35,6 +49,11 @@ class SearchCard extends React.Component {
     this.setSelectedIngridients(this.selectedIngridients);
   }
 
+  /**
+   * This method sets the selected ingridients by the user
+   * 
+   * @param {Array} value 
+   */
   setSelectedIngridients(value) {
     this.props.onSearchClick(value);
   }

@@ -8,6 +8,10 @@ import Header from '../header';
 import SearchCard from '../searchCard';
 import RecipeCard from '../recipeCard';
 
+/**
+ * This class is the MainMenu component
+ * This is the container for RecipeCard and SearchCard component
+ */
 class MainMenu extends React.Component {
   constructor() {
     super();
@@ -17,6 +21,11 @@ class MainMenu extends React.Component {
     this.getIngridients = this.getIngridients.bind(this);
   }
 
+  /**
+   * This method gets the ingridients from callback
+   * 
+   * @param {Array} value 
+   */
   getIngridients(value) {
     this.selectedIngridients = [];
     value.forEach(elem => {

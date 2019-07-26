@@ -4,8 +4,13 @@ import Select from 'react-select';
 // Styles
 import './filterBar.scss';
 
+// Mocked ingriditens
 import ingridients from '../../../mockedIngridients.json';
 
+/**
+ * This class is the FilterBar component where user can select
+ * ingridients from the ingridients JSON file
+ */
 class FilterBar extends React.Component {
   constructor() {
     super();
@@ -13,6 +18,10 @@ class FilterBar extends React.Component {
     this.ingridients = React.createRef();
   }
 
+  /**
+   * This method pass the ingridient item
+   * to the parent component
+   */
   setIngridientItem() {
     this.props.onIngridientAdded(this.ingridients.current.state.value);
   }
