@@ -4,7 +4,7 @@ import Utils from '../utils/utils';
 // Styles
 import './recipeCard.scss';
 
-//
+// Mocked data from recipes
 import recipes from '../../recipes.json';
 
 // Components
@@ -12,6 +12,12 @@ import Recipe from './recipe';
 import Modal from './modal';
 import Spinner from './spinner';
 
+/**
+ * This class is the RecipeCard component renders a recipe
+ * as initial state renders a random recipe after that renders
+ * recipes if the props recived with the current ingridients
+ * matches with a recipe on the recipe.json file
+ */
 class RecipeCard extends React.Component {
   constructor(props) {
     super(props);
@@ -46,6 +52,9 @@ class RecipeCard extends React.Component {
     }
   }
 
+  /**
+   * This method sets the recipe when a recipe from the json matches with the ingridients
+   */
   setRecipe() {
     this.setState({ isLoading: true });
     let currentRecipe = this.currentRecipe.name;
@@ -67,16 +76,28 @@ class RecipeCard extends React.Component {
     }, 2000)
   }
 
+  /**
+   * This method updates the local status of noRecipeFound
+   * 
+   * @param {true/false} value 
+   */
   updateModalStatus(value) {
     this.setState({ noRecipeFound: value })
   }
 
+  /**
+   * This method renders the modal when no recipes are found
+   */
   renderModal() {
     if (this.state.noRecipeFound) {
       return <Modal onButtonClick={this.updateModalStatus} />
     }
   }
 
+  /**
+   * This method renders the spinner when the local state isLoading 
+   * has true as value
+   */
   renderSpinner() {
     if (this.state.isLoading) {
       return <Spinner />;
@@ -84,6 +105,11 @@ class RecipeCard extends React.Component {
     return null;
   }
 
+  /**
+   * This method renders the recipe thumbnail and the Recipe component
+   * 
+   * @param {Object} currentRecipe 
+   */
   renderRecipe(currentRecipe) {
     if (currentRecipe) {
       const thumbnail = {

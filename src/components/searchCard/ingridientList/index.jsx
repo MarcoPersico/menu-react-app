@@ -6,6 +6,10 @@ import IngridientItem from './ingridientItem';
 // Styles
 import './ingridientList.scss';
 
+/**
+ * This is the IngridientList component where a list of the
+ * ingridients selected are displayed
+ */
 class IngridientList extends React.Component {
   constructor(props) {
     super(props);
@@ -37,6 +41,12 @@ class IngridientList extends React.Component {
     }
   }
 
+  /**
+   * This method renders the IngridientItem component
+   * using value param object to render it
+   * 
+   * @param {Object} value 
+   */
   renderIngridients(value) {
     if (value) {
       this.searchButton.current.disabled = false;
@@ -46,6 +56,10 @@ class IngridientList extends React.Component {
     }
   }
 
+  /**
+   * This method sets the ingridients items selected and pass it to
+   * the parent component through callback
+   */
   setIngridients() {
     if (this.state.ingridientItems.length) {
       this.props.onSearchClick(this.state.ingridientItems);

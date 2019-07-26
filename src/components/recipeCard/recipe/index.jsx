@@ -3,6 +3,12 @@ import React from 'react';
 // Styles
 import './recipe.scss';
 
+/**
+ * This function is the Recipe component recieves a object as props
+ * and renders The name and the steps that the object has
+ * 
+ * @param {React Props} props 
+ */
 export default function Recipe(props) {
   const { recipeData } = props;
   return (
