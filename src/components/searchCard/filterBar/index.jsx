@@ -12,10 +12,11 @@ import ingridients from '../../../mockedIngridients.json';
  * ingridients from the ingridients JSON file
  */
 class FilterBar extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.ingridients = React.createRef();
+    this.setIngridientItem = this.setIngridientItem.bind(this);
   }
 
   /**
@@ -38,7 +39,7 @@ class FilterBar extends React.Component {
             ref={this.ingridients}
           />
         </div>
-        <button onClick={() => this.setIngridientItem()}>+</button>
+        <button onClick={this.setIngridientItem}>+</button>
       </div>
     );
   }

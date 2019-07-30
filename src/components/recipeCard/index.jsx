@@ -21,7 +21,7 @@ import Spinner from './spinner';
 class RecipeCard extends React.Component {
   constructor(props) {
     super(props);
-    this.currentIngridients = [];
+
     this.currentRecipe = {
       thumbnail: '',
       name: '',
@@ -29,8 +29,14 @@ class RecipeCard extends React.Component {
       steps: '',
     };
 
-    this.state = { currentRecipe: {}, noRecipeFound: false, isLoading: false }
     this.Utils = new Utils();
+    this.state = {
+      currentRecipe: {},
+      noRecipeFound: false,
+      isLoading: false,
+      ingridients: [],
+    }
+
     this.renderModal = this.renderModal.bind(this);
     this.updateModalStatus = this.updateModalStatus.bind(this);
     this.setRecipe = this.setRecipe.bind(this);
@@ -38,42 +44,32 @@ class RecipeCard extends React.Component {
 
   componentWillMount() {
     let random = Math.floor((Math.random() * recipes.length));
-
-    Object.assign(this.currentRecipe, recipes[random]);
-    this.setState({
-      currentRecipe: this.currentRecipe,
-    });
+    
+    this.setRecipe(random);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.currentIngridients.length === 0 ||
-      !this.Utils.compare(prevProps.currentIngridients, this.props.currentIngridients)) {
-      this.setRecipe();
-    }
+  getCurrentRecipe() {
+    let ingridientsName = [];
+    this.props.currentIngridients.forEach(ingridients => {
+      ingridientsName.push(ingridients.label);
+    });
+
+    this.setState({ ingridients: ingridientsName })
   }
 
   /**
    * This method sets the recipe when a recipe from the json matches with the ingridients
    */
-  setRecipe() {
-    this.setState({ isLoading: true });
-    let currentRecipe = this.currentRecipe.name;
-    setTimeout(() => {
-      recipes.forEach(value => {
-        if (this.Utils.compare(value.ingridients, this.props.currentIngridients)) {
-          Object.assign(this.currentRecipe, value);
-          this.setState({
-            currentRecipe: this.currentRecipe,
-          });
-        }
+  setRecipe(value) {
+    if (this.props.currentIngridients.length === 0) {
+      this.setState({
+        currentRecipe: recipes[value],
       });
-
-      this.setState({ isLoading: false });
-      if (this.state.currentRecipe.name === currentRecipe) {
-        this.updateModalStatus(true);
-        this.setState({ isLoading: false });
-      }
-    }, 2000)
+    } else {
+      this.setState({
+        currentRecipe: value,
+      })
+    }
   }
 
   /**
@@ -110,7 +106,8 @@ class RecipeCard extends React.Component {
    * 
    * @param {Object} currentRecipe 
    */
-  renderRecipe(currentRecipe) {
+  renderRecipe() {
+    const { currentRecipe } = this.state;
     if (currentRecipe) {
       const thumbnail = {
         backgroundImage: `url(${currentRecipe.thumbnail})`,
@@ -133,7 +130,7 @@ class RecipeCard extends React.Component {
     return (
       <div>
         {this.renderSpinner()}
-        {this.renderRecipe(this.state.currentRecipe)}
+        {this.renderRecipe()}
         {this.renderModal()}
       </div>
     );
