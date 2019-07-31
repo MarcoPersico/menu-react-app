@@ -19,119 +19,106 @@ import Spinner from './spinner';
  * matches with a recipe on the recipe.json file
  */
 class RecipeCard extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.currentRecipe = {
-      thumbnail: '',
-      name: '',
-      ingridients: '',
-      steps: '',
-    };
+  constructor() {
+    super();
 
     this.Utils = new Utils();
     this.state = {
-      currentRecipe: {},
-      noRecipeFound: false,
+      recipeAdded: false,
       isLoading: false,
-      ingridients: [],
+      isRecipeNotFound: false,
+      recipe: {
+        name: '',
+        thumbnail: '',
+        ingridients: '',
+        steps: '',
+      }
     }
-
-    this.renderModal = this.renderModal.bind(this);
     this.updateModalStatus = this.updateModalStatus.bind(this);
-    this.setRecipe = this.setRecipe.bind(this);
   }
 
   componentWillMount() {
     let random = Math.floor((Math.random() * recipes.length));
-    
-    this.setRecipe(random);
-  }
 
-  getCurrentRecipe() {
-    let ingridientsName = [];
-    this.props.currentIngridients.forEach(ingridients => {
-      ingridientsName.push(ingridients.label);
+    this.setState({
+      recipe: recipes[random],
+      recipeAdded: true,
     });
-
-    this.setState({ ingridients: ingridientsName })
   }
 
-  /**
-   * This method sets the recipe when a recipe from the json matches with the ingridients
-   */
-  setRecipe(value) {
-    if (this.props.currentIngridients.length === 0) {
-      this.setState({
-        currentRecipe: recipes[value],
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentIngridients &&
+      nextProps.currentIngridients !== this.props.currentIngridients) {
+      this.findRecipe(nextProps.currentIngridients);
+    }
+  }
+
+  findRecipe(ingridients) {
+    let ingridientsName = [];
+    let currentRecipe = this.state.recipe.name;
+
+    this.setState(
+      {
+        isLoading: true,
       });
-    } else {
-      this.setState({
-        currentRecipe: value,
-      })
+
+    ingridients.forEach(ingridient => ingridientsName.push(ingridient.label));
+
+    setTimeout(() => {
+      if (!this.Utils.compare(this.state.recipe.ingridients, ingridientsName)) {
+        recipes.map(recipe => {
+          if (this.Utils.compare(recipe.ingridients, ingridientsName)) {
+            this.setState({
+              recipe: recipe,
+              recipeAdded: true,
+            });
+          }
+        });
+      }
+
+      this.setState({ isLoading: false });
+      if (this.state.recipe.name === currentRecipe) {
+        this.setState({ isRecipeNotFound: true })
+      }
+    }, 2500);
+  }
+
+  renderRecipe() {
+    if (this.state.recipeAdded) {
+      return (
+        <Recipe
+          onLoading={this.state.isLoading}
+          onRecipeNotFound={this.state.isRecipeNotFound}
+          recipeData={this.state.recipe}
+        />
+      )
     }
   }
 
-  /**
-   * This method updates the local status of noRecipeFound
-   * 
-   * @param {true/false} value 
-   */
-  updateModalStatus(value) {
-    this.setState({ noRecipeFound: value })
-  }
-
-  /**
-   * This method renders the modal when no recipes are found
-   */
-  renderModal() {
-    if (this.state.noRecipeFound) {
-      return <Modal onButtonClick={this.updateModalStatus} />
-    }
-  }
-
-  /**
-   * This method renders the spinner when the local state isLoading 
-   * has true as value
-   */
   renderSpinner() {
     if (this.state.isLoading) {
       return <Spinner />;
     }
-    return null;
   }
 
-  /**
-   * This method renders the recipe thumbnail and the Recipe component
-   * 
-   * @param {Object} currentRecipe 
-   */
-  renderRecipe() {
-    const { currentRecipe } = this.state;
-    if (currentRecipe) {
-      const thumbnail = {
-        backgroundImage: `url(${currentRecipe.thumbnail})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
-      }
-      return (
-        <div className='menu_recipeCard'>
-          <div style={thumbnail} className='menu_recipeCard_thumbnail' />
-          <Recipe
-            recipeData={currentRecipe}
-          />
-        </div>
-      );
+  renderModal() {
+    if (this.state.isRecipeNotFound) {
+      return <Modal onButtonClick={this.updateModalStatus} />;
     }
-    return null;
+  }
+
+  updateModalStatus(value) {
+    this.setState({
+      isRecipeNotFound: value,
+    })
   }
 
   render() {
     return (
-      <div>
+      <div className='menu_recipeCard'>
         {this.renderSpinner()}
-        {this.renderRecipe()}
         {this.renderModal()}
+        {this.renderRecipe()}
       </div>
     );
   }
