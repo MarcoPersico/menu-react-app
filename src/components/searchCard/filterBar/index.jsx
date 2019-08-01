@@ -1,11 +1,21 @@
 import React from 'react';
 import Select from 'react-select';
+import * as firebase from "firebase/app";
 
 // Styles
 import './filterBar.scss';
 
-// Mocked ingriditens
-import ingridients from '../../../mockedIngridients.json';
+import "firebase/auth";
+import "firebase/firestore";
+
+if (!firebase.apps.length) {
+  firebase.initializeApp({
+    apiKey: 'AIzaSyBjLsicAZgFO4kVzrHxtIIPLQA-Z_wvY2k',
+    authDomain: 'menu-app-db.firebaseapp.com',
+    projectId: 'menu-app-db'
+  });
+}
+let db = firebase.firestore();
 
 /**
  * This class is the FilterBar component where user can select
@@ -15,6 +25,7 @@ class FilterBar extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = { options: [] };
     this.ingridients = React.createRef();
     this.setIngridientItem = this.setIngridientItem.bind(this);
   }
@@ -27,6 +38,19 @@ class FilterBar extends React.Component {
     this.props.onIngridientAdded(this.ingridients.current.state.value);
   }
 
+  componentWillMount() {
+    let options = [];
+    db.collection('ingridients').get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          options.push(doc.data());
+        });
+      })
+      .finally(() => {
+        this.setState ({ options: options });
+      });
+  }
+
   render() {
     return (
       <div className='menu_searchCard_filterBar'>
@@ -34,7 +58,7 @@ class FilterBar extends React.Component {
           <Select
             isMulti
             name='ingridients'
-            options={ingridients}
+            options={this.state.options}
             classNamePrefix='select'
             ref={this.ingridients}
           />

@@ -1,16 +1,26 @@
 import React from 'react';
 import Utils from '../utils/utils';
+import * as firebase from "firebase/app";
 
 // Styles
 import './recipeCard.scss';
-
-// Mocked data from recipes
-import recipes from '../../recipes.json';
 
 // Components
 import Recipe from './recipe';
 import Modal from './modal';
 import Spinner from './spinner';
+
+import "firebase/auth";
+import "firebase/firestore";
+
+if (!firebase.apps.length) {
+  firebase.initializeApp({
+    apiKey: 'AIzaSyBjLsicAZgFO4kVzrHxtIIPLQA-Z_wvY2k',
+    authDomain: 'menu-app-db.firebaseapp.com',
+    projectId: 'menu-app-db'
+  });
+}
+let db = firebase.firestore();
 
 /**
  * This class is the RecipeCard component renders a recipe
@@ -22,6 +32,7 @@ class RecipeCard extends React.Component {
   constructor() {
     super();
 
+    this.recipe = ''
     this.Utils = new Utils();
     this.state = {
       recipeAdded: false,
@@ -38,12 +49,23 @@ class RecipeCard extends React.Component {
   }
 
   componentWillMount() {
-    let random = Math.floor((Math.random() * recipes.length));
-
-    this.setState({
-      recipe: recipes[random],
-      recipeAdded: true,
-    });
+    this.setState({ isLoading: true });
+    db.collection('recipes').get()
+      .then((querySnapshot) => {
+        let recipesLength = querySnapshot.docs.length;
+        let random = Math.floor((Math.random() * recipesLength + 1));
+        let randomRecipe = db.collection('recipes').doc(random.toString());
+        randomRecipe.get()
+          .then((doc) => {
+            this.setState({
+              recipe: doc.data(),
+              recipeAdded: true,
+              isLoading: false
+            });
+          });
+      }).catch(error => {
+        console.log(error);
+      });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -56,31 +78,30 @@ class RecipeCard extends React.Component {
   findRecipe(ingridients) {
     let ingridientsName = [];
     let currentRecipe = this.state.recipe.name;
-
-    this.setState(
-      {
-        isLoading: true,
-      });
-
     ingridients.forEach(ingridient => ingridientsName.push(ingridient.label));
 
-    setTimeout(() => {
-      if (!this.Utils.compare(this.state.recipe.ingridients, ingridientsName)) {
-        recipes.map(recipe => {
-          if (this.Utils.compare(recipe.ingridients, ingridientsName)) {
+    if (!this.Utils.compare(this.state.recipe.ingridients, ingridientsName)) {
+      this.setState({ isLoading: true });
+      db.collection('recipes').get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach(doc => {
+            if (this.Utils.compare(doc.data().ingridients, ingridientsName)) {
+              this.setState({
+                recipe: doc.data(),
+                isLoading: false,
+              });
+            }
+          });
+        })
+        .then(() => {
+          if (this.state.recipe.name === currentRecipe) {
             this.setState({
-              recipe: recipe,
-              recipeAdded: true,
+              isLoading: false,
+              isRecipeNotFound: true,
             });
           }
         });
-      }
-
-      this.setState({ isLoading: false });
-      if (this.state.recipe.name === currentRecipe) {
-        this.setState({ isRecipeNotFound: true })
-      }
-    }, 2500);
+    }
   }
 
   renderRecipe() {
@@ -114,6 +135,7 @@ class RecipeCard extends React.Component {
   }
 
   render() {
+
     return (
       <div className='menu_recipeCard'>
         {this.renderSpinner()}
