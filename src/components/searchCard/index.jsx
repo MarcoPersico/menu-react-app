@@ -1,8 +1,5 @@
 import React from 'react';
 
-// Ingridients
-import ingridients from '../../mockedIngridients.json';
-
 // Components
 import FilterBar from './filterBar';
 import IngridientList from './ingridientList';
@@ -43,7 +40,6 @@ class SearchCard extends React.Component {
       <div className='menu_searchCard'>
         <div className='menu_searchCard_wrapper'>
           <FilterBar
-            ingridients={ingridients}
             onIngridientAdded={this.setCurrentIngridients}
           />
           <IngridientList
