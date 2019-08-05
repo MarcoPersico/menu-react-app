@@ -14,19 +14,25 @@ class IngridientList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      ingridientItems: [],
-    }
+    this.state = { ingridientItems: [] };
     this.searchButton = React.createRef();
   }
 
+  /**
+   * This method will render the ingridient list for the ingridients selected
+   */
   renderIngridientsList() {
     if (this.props.ingridientItems) {
-      return this.props.ingridientItems.map((value) => this.getIngridientItems(value));
+      return this.props.ingridientItems.map((value) => this.renderIngridientItem(value));
     }
   }
 
-  getIngridientItems(value) {
+  /**
+   * This method will render the ingridient item with the value recieved
+   * 
+   * @param {Object} value 
+   */
+  renderIngridientItem(value) {
     return <IngridientItem key={value.value} ingridientName={value.label} />
   }
 
