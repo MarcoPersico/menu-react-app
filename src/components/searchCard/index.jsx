@@ -31,6 +31,9 @@ class SearchCard extends React.Component {
     this.setState({ ingridientItems: value });
   }
 
+  /**
+   * This method will get the selected ingridients
+   */
   getSelectedIngridients() {
     this.props.onButtonClick(this.state.ingridientItems);
   }

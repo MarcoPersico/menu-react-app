@@ -6,7 +6,7 @@ import './modal.scss';
 /**
  * This function is the Modal component
  * 
- * @param {React Props} props 
+ * @param {Object} props 
  */
 export default function Modal(props) {
   return (

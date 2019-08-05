@@ -10,6 +10,7 @@ import Recipe from './recipe';
 import Modal from './modal';
 import Spinner from './spinner';
 
+// Firebase intialization
 import "firebase/auth";
 import "firebase/firestore";
 
@@ -75,6 +76,13 @@ class RecipeCard extends React.Component {
     }
   }
 
+  /**
+   * This method will find a recipe with the ingridients selected
+   * then will update local state recipe with the value found
+   * if recipe is not found then will update not recipe foind local state
+   * 
+   * @param {Array} ingridients 
+   */
   findRecipe(ingridients) {
     let ingridientsName = [];
     let currentRecipe = this.state.recipe.name;
@@ -104,6 +112,10 @@ class RecipeCard extends React.Component {
     }
   }
 
+  /**
+   * This method will render Recipe component when local state
+   * recipeAdded is true
+   */
   renderRecipe() {
     if (this.state.recipeAdded) {
       return (
@@ -116,18 +128,32 @@ class RecipeCard extends React.Component {
     }
   }
 
+  /**
+   * This method will render a spinner when the local state isLoading
+   * is true
+   */
   renderSpinner() {
     if (this.state.isLoading) {
       return <Spinner />;
     }
   }
 
+  /**
+   * This method will render a error modal when isRecipeNotFound local state
+   * is true
+   */
   renderModal() {
     if (this.state.isRecipeNotFound) {
       return <Modal onButtonClick={this.updateModalStatus} />;
     }
   }
 
+  /**
+   * This method will upadate the local state isRecipeNotFound
+   * with the value recieved
+   * 
+   * @param {Boolean} value 
+   */
   updateModalStatus(value) {
     this.setState({
       isRecipeNotFound: value,
@@ -135,7 +161,6 @@ class RecipeCard extends React.Component {
   }
 
   render() {
-
     return (
       <div className='menu_recipeCard'>
         {this.renderSpinner()}
