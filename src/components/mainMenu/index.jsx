@@ -32,7 +32,10 @@ class MainMenu extends React.Component {
   render() {
     return (
       <div className='menu_main'>
-        <Header />
+        <Header
+          anchorLabel='Recipe Gallery'
+          anchorLink={'/gallery'}
+        />
         <div className='menu_main_wrapper'>
           <div className='menu_main_leftMenu animated fadeIn'>
             <SearchCard

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Router } from 'react-router';
 
 // Styles
 import './App.scss';
@@ -10,7 +11,10 @@ import RecipeGallery from '../components/recipeGallery';
 function App() {
   return (
     <div className="Menu">
-      <RecipeGallery />
+      <Router>
+        <Route exact path='/' component={MainMenu} />
+        <Route path='gallery' component={RecipeGallery} />
+      </Router>
     </div>
   );
 }
