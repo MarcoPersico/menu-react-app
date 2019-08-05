@@ -10,7 +10,7 @@
 
   @include medium-screen() {
     grid-template-rows: 1fr;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   ol {

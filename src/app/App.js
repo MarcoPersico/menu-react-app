@@ -5,11 +5,12 @@ import './App.scss';
 
 // Components
 import MainMenu from '../components/mainMenu';
+import RecipeGallery from '../components/recipeGallery';
 
 function App() {
   return (
     <div className="Menu">
-      <MainMenu />
+      <RecipeGallery />
     </div>
   );
 }
