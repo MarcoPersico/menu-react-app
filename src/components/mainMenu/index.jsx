@@ -16,7 +16,6 @@ class MainMenu extends React.Component {
   constructor() {
     super();
 
-    this.selectedIngridients = [];
     this.state = { selectedIngridients: [] };
     this.getIngridients = this.getIngridients.bind(this);
   }
@@ -27,14 +26,7 @@ class MainMenu extends React.Component {
    * @param {Array} value 
    */
   getIngridients(value) {
-    this.selectedIngridients = [];
-    value.forEach(elem => {
-      this.selectedIngridients.push(elem);
-    })
-
-    this.setState({
-      selectedIngridients: this.selectedIngridients,
-    })
+    this.setState({ selectedIngridients: value });
   }
 
   render() {
@@ -44,8 +36,7 @@ class MainMenu extends React.Component {
         <div className='menu_main_wrapper'>
           <div className='menu_main_leftMenu animated fadeIn'>
             <SearchCard
-              onSearchClick={this.getIngridients}
-              currentIngridients={this.state.selectedIngridients}
+              onButtonClick={this.getIngridients}
             />
           </div>
           <div className='menu_main_rightMenu animated fadeIn'>

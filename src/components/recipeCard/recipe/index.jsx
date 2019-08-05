@@ -11,13 +11,20 @@ import './recipe.scss';
  */
 export default function Recipe(props) {
   const { recipeData } = props;
+  const thumbnail = {
+    backgroundImage: `url(${recipeData.thumbnail})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat'
+  }
+
   return (
     <div className='menu_recipe'>
-      <h3>{recipeData.name}</h3>
+      <div style={thumbnail} className='menu_recipeCard_thumbnail' />
       <div className='menu_recipe_steps'>
+        <h2>{recipeData.name}</h2>
         <ol>
           {recipeData.steps.map(
-            value => <li  key={recipeData.steps.indexOf(value)}>{value}</li>
+            value => <li key={recipeData.steps.indexOf(value)}>{value}</li>
           )}
         </ol>
       </div>

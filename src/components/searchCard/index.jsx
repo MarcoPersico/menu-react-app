@@ -1,8 +1,5 @@
 import React from 'react';
 
-// Ingridients
-import ingridients from '../../mockedIngridients.json';
-
 // Components
 import FilterBar from './filterBar';
 import IngridientList from './ingridientList';
@@ -18,11 +15,10 @@ class SearchCard extends React.Component {
   constructor() {
     super();
 
-    this.selectedIngridients = [];
     this.state = {
-      ingridientItem: '',
+      ingridientItems: '',
     };
-    this.getIngridientItem = this.getIngridientItem.bind(this);
+    this.setCurrentIngridients = this.setCurrentIngridients.bind(this);
     this.getSelectedIngridients = this.getSelectedIngridients.bind(this);
   }
 
@@ -31,31 +27,12 @@ class SearchCard extends React.Component {
    * 
    * @param {String} value 
    */
-  getIngridientItem(value) {
-    this.setState({ ingridientItem: value });
+  setCurrentIngridients(value) {
+    this.setState({ ingridientItems: value });
   }
 
-  /**
-   * This method get the current array of ingridients and push into 
-   * auxiliar array
-   * @param {*} value 
-   */
-  getSelectedIngridients(value) {
-    this.selectedIngridients = [];
-    value.forEach(val => {
-      this.selectedIngridients.push(val.label);
-    });
-
-    this.setSelectedIngridients(this.selectedIngridients);
-  }
-
-  /**
-   * This method sets the selected ingridients by the user
-   * 
-   * @param {Array} value 
-   */
-  setSelectedIngridients(value) {
-    this.props.onSearchClick(value);
+  getSelectedIngridients() {
+    this.props.onButtonClick(this.state.ingridientItems);
   }
 
   render() {
@@ -63,11 +40,10 @@ class SearchCard extends React.Component {
       <div className='menu_searchCard'>
         <div className='menu_searchCard_wrapper'>
           <FilterBar
-            ingridients={ingridients}
-            onIngridientAdded={this.getIngridientItem}
+            onIngridientAdded={this.setCurrentIngridients}
           />
           <IngridientList
-            ingridientItem={this.state.ingridientItem}
+            ingridientItems={this.state.ingridientItems}
             onSearchClick={this.getSelectedIngridients}
           />
         </div>
