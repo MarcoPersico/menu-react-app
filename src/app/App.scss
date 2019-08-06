@@ -18,11 +18,11 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $primary-text-color; 
+  background: #525252; 
   transition: all .4s;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: $primary-light-color; 
+  background: $primary-color; 
 }

@@ -5,6 +5,11 @@ import * as firebase from "firebase/app";
 // Styles
 import './filterBar.scss';
 
+// Font Awesome import
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
+// Firebase Initialization
 import "firebase/auth";
 import "firebase/firestore";
 
@@ -47,7 +52,7 @@ class FilterBar extends React.Component {
         });
       })
       .finally(() => {
-        this.setState ({ options: options });
+        this.setState({ options: options });
       });
   }
 
@@ -63,7 +68,9 @@ class FilterBar extends React.Component {
             ref={this.ingridients}
           />
         </div>
-        <button onClick={this.setIngridientItem}>+</button>
+        <button onClick={this.setIngridientItem} >
+          <FontAwesomeIcon icon={faPlus} />
+        </button>
       </div>
     );
   }
