@@ -1,0 +1,25 @@
+@import '../../assests/styles/base.scss';
+
+.menu_recipePage {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 10vh auto;
+  background-color: $primary-light-color;
+  color: $primary-text-color;
+  font-family: $secondary-font;
+
+  &_recipeWrapper {
+    display: grid;
+    grid-template-rows: 4fr 3fr;
+  }
+  
+  &_dataWrapper {
+    padding: 0 50px;
+  }
+
+  &_ingridientsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 180px);
+    grid-gap: 25px;
+  }
+}
