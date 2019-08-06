@@ -4,12 +4,37 @@
   height: 100%;
   width: 100%;
   background-color: $primary-dark-color;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100%;
+  justify-items: end;
 
   &_brand {
+    color: #FFFFFF;
+    position: absolute;
+    left: 50%;
+    top: 3vh;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: $primary-font;
+  }
+
+  &_anchorWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    text-align: center;
+  }
+
+  a {
+    display: grid;
+    align-items: center;
+    height: 100%;
+    transition: all .6s;
     color: $text;
-    font-weight: 500;
+
+    &:hover {
+      background-color: $primary-light-color;
+      color: $primary-text-color
+    }
   }
 }

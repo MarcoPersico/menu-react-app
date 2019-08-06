@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Styles
 import './recipe.scss';
@@ -18,16 +19,18 @@ export default function Recipe(props) {
   }
 
   return (
-    <div className='menu_recipe'>
-      <div style={thumbnail} className='menu_recipeCard_thumbnail' />
-      <div className='menu_recipe_steps'>
-        <h2>{recipeData.name}</h2>
-        <ol>
-          {recipeData.steps.map(
-            value => <li key={recipeData.steps.indexOf(value)}>{value}</li>
-          )}
-        </ol>
+    <Link to={`/recipe/${recipeData.id}`}>
+      <div className='menu_recipe'>
+        <div style={thumbnail} className='menu_recipeCard_thumbnail' />
+        <div className='menu_recipe_steps'>
+          <h2>{recipeData.name}</h2>
+          <ol>
+            {recipeData.steps.map(
+              value => <li key={recipeData.steps.indexOf(value)}>{value}</li>
+            )}
+          </ol>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -1,0 +1,16 @@
+@import '../../assests/styles/base.scss';
+
+.menu_recipeGallery {
+  display: grid;
+  grid-template-rows: 10vh auto;
+  background-color: $primary-color;
+  min-height: 100vh;
+
+  &_cardContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 500px;
+    grid-gap: 50px;
+    padding: 25px;
+  }
+}
