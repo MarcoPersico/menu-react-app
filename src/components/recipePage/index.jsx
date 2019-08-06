@@ -61,7 +61,8 @@ class RecipePage extends React.Component {
       const thumbnail = {
         backgroundImage: `url(${recipe.thumbnail})`,
         backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
       }
 
       return (
