@@ -51,7 +51,7 @@ class RecipeGallery extends React.Component {
   }
 
   renderRecipe(value) {
-    return <Recipe recipeData={value} />
+    return <Recipe key={value.id} recipeData={value} />
   }
 
   renderSpinner() {
@@ -61,11 +61,17 @@ class RecipeGallery extends React.Component {
   }
 
   render() {
-    console.log(this.state.recipes);
     return (
       <div className='menu_recipeGallery'>
         {this.renderSpinner()}
-        <Header />
+        <Header
+          anchorItems={[
+            {
+              label: 'Home',
+              path: '/',
+            }
+          ]}
+        />
         <div className='menu_recipeGallery_cardContainer'>
           {this.state.recipes.map(this.renderRecipe)}
         </div>

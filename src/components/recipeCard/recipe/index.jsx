@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Styles
 import './recipe.scss';
@@ -18,7 +19,7 @@ export default function Recipe(props) {
   }
 
   return (
-    <a href='#'>
+    <Link to={`/recipe/${recipeData.id}`}>
       <div className='menu_recipe'>
         <div style={thumbnail} className='menu_recipeCard_thumbnail' />
         <div className='menu_recipe_steps'>
@@ -30,6 +31,6 @@ export default function Recipe(props) {
           </ol>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

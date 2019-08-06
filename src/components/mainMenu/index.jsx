@@ -33,8 +33,12 @@ class MainMenu extends React.Component {
     return (
       <div className='menu_main'>
         <Header
-          anchorLabel='Recipe Gallery'
-          anchorLink={'/gallery'}
+          anchorItems={[
+            {
+              label: 'Recipe Gallery',
+              path: '/gallery',
+            }
+          ]}
         />
         <div className='menu_main_wrapper'>
           <div className='menu_main_leftMenu animated fadeIn'>
