@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import IngridientItem from './ingridientItem/index.jsx';
+import IngridientItem from './ingridientItem/index';
 
 // Styles
 import './ingridientList.scss';
@@ -31,6 +31,8 @@ class IngridientList extends React.Component {
    * This method will render the ingridient item with the value recieved
    * 
    * @param {Object} value 
+   * 
+   * @returns React Element
    */
   renderIngridientItem(value) {
     return <IngridientItem key={value.value} ingridientName={value.label} />
