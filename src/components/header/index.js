@@ -14,11 +14,12 @@ export default function Header(props) {
    * the rendered component is a Link from react-router-dom
    * 
    * @param {Object} value 
+   * @param {Number} key
    * 
    * @returns React Component
    */
-  const renderAnchorItems = (value) => {
-    return <Link to={value.path}>{value.label}</Link>;
+  const renderAnchorItems = (value, key) => {
+    return <Link key={key} to={value.path}>{value.label}</Link>;
   }
 
   return (
