@@ -1,4 +1,3 @@
-import isEqual from 'lodash.isequal';
 /**
  * This class is for javascript utils functions
  */

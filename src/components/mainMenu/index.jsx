@@ -4,9 +4,9 @@ import React from 'react';
 import './mainMenu.scss';
 
 // Components
-import Header from '../header';
-import SearchCard from '../searchCard';
-import RecipeCard from '../recipeCard';
+import Header from '../header/index.jsx';
+import SearchCard from '../searchCard/index.jsx';
+import RecipeCard from '../recipeCard/index.jsx';
 
 /**
  * This class is the MainMenu component

@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Components
-import FilterBar from './filterBar';
-import IngridientList from './ingridientList';
+import FilterBar from './filterBar/index.jsx';
+import IngridientList from './ingridientList/index.jsx';
 
 // Styles
 import './searchCard.scss';
