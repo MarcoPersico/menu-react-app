@@ -8,7 +8,7 @@ import './recipe.scss';
  * This function is the Recipe component recieves a object as props
  * and renders The name and the steps that the object has
  * 
- * @param {Object} props 
+ * @param {React Props} props 
  */
 export default function Recipe(props) {
   const { recipeData } = props;
@@ -18,10 +18,6 @@ export default function Recipe(props) {
     backgroundRepeat: 'no-repeat'
   }
 
-  const renderSteps = (value, key) => {
-    return <li key={key}>{value}</li>;
-  }
-
   return (
     <Link to={`/recipe/${recipeData.id}`}>
       <div className='menu_recipe'>
@@ -29,7 +25,9 @@ export default function Recipe(props) {
         <div className='menu_recipe_steps'>
           <h2>{recipeData.name}</h2>
           <ol>
-            {recipeData.steps.map(renderSteps)}
+            {recipeData.steps.map(
+              value => <li key={recipeData.steps.indexOf(value)}>{value}</li>
+            )}
           </ol>
         </div>
       </div>

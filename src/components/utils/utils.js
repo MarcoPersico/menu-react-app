@@ -8,15 +8,23 @@ class Utils {
    * when the array are equal otherwise returns false
    */
   compare(arr1, arr2) {
-    if (arr1.length === arr2.length) {
+    let finalArray = [];
+    if (arr1.length !== arr2.length) {
+      return false;
+    } else {
       arr1.forEach(elemArr1 => {
-        if (!arr2.includes(elemArr1)) {
-          return false;
-        };
+        arr2.forEach(elemArr2 => {
+          if (elemArr1 === elemArr2) {
+            finalArray.push(elemArr1);
+          }
+        });
       });
-      return true;
+
+      if (isEqual(finalArray, arr1) && finalArray.length !== 0) {
+        return true;
+      }
+      return false;
     }
-    return false;
   }
 }
 
