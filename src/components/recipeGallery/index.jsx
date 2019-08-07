@@ -2,9 +2,9 @@ import React from 'react';
 import * as firebase from "firebase/app";
 
 // Components
-import Header from '../header';
-import Recipe from '../recipeCard/recipe';
-import Spinner from '../recipeCard/spinner';
+import Header from '../header/index.jsx';
+import Recipe from '../recipeCard/recipe/index.jsx';
+import Spinner from '../recipeCard/spinner/index.jsx';
 
 // Styles
 import './recipeGallery.scss';
