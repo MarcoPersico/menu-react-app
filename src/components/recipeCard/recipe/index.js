@@ -18,6 +18,15 @@ export default function Recipe(props) {
     backgroundRepeat: 'no-repeat'
   }
 
+  /**
+   * This method will render the steps of the recipe recieved
+   * The element rendered is a <li> JSX element
+   * 
+   * @param {String} value 
+   * @param {Number} key
+   * 
+   * @returns JSX Element 
+   */
   const renderSteps = (value, key) => {
     return <li key={key}>{value}</li>;
   }

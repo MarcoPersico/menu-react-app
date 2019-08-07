@@ -5,9 +5,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
 
 // Components
-import MainMenu from '../components/mainMenu/index.jsx';
-import RecipeGallery from '../components/recipeGallery/index.jsx';
-import RecipePage from '../components/recipePage/index.jsx';
+import MainMenu from '../components/mainMenu/index';
+import RecipeGallery from '../components/recipeGallery/index';
+import RecipePage from '../components/recipePage/index';
 
 function App() {
   return (

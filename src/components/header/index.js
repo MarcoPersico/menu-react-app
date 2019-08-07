@@ -9,6 +9,14 @@ import './header.scss';
  */
 export default function Header(props) {
   
+  /**
+   * This method will render each item that header will receive as props
+   * the rendered component is a Link from react-router-dom
+   * 
+   * @param {Object} value 
+   * 
+   * @returns React Component
+   */
   const renderAnchorItems = (value) => {
     return <Link to={value.path}>{value.label}</Link>;
   }
