@@ -17,6 +17,16 @@
     padding: 0 5px;
   }
 
+  @include medium-screen() {
+    &_recipeWrapper {
+      grid-template-rows: 6fr 3fr;
+    }
+
+    &_dataWrapper {
+      padding: 0 50px;
+    }
+  }
+
   &_ingridientsList {
     display: grid;
     grid-template-columns: repeat(auto-fill, 180px);
