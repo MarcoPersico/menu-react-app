@@ -6,7 +6,7 @@
   height: 100%;
   overflow-y: scroll;
   background-color: $primary-light-color;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 300px 200px;
 
   @include medium-screen() {
     grid-template-rows: 1fr;
