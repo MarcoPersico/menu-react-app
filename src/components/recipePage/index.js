@@ -99,6 +99,10 @@ class RecipePage extends React.Component {
                 label: 'Home',
                 path: '/',
               },
+              {
+                label: 'Recipe Gallery',
+                path: '/gallery',
+              },
             ]}
           />
           <div className='menu_recipePage_recipeWrapper'>

@@ -10,11 +10,21 @@
 
   &_recipeWrapper {
     display: grid;
-    grid-template-rows: 4fr 3fr;
+    grid-template-rows: 1fr 2fr;
   }
   
   &_dataWrapper {
-    padding: 0 50px;
+    padding: 0 5px;
+  }
+
+  @include medium-screen() {
+    &_recipeWrapper {
+      grid-template-rows: 6fr 3fr;
+    }
+
+    &_dataWrapper {
+      padding: 0 50px;
+    }
   }
 
   &_ingridientsList {

@@ -3,12 +3,12 @@
 .menu_main {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: 40px 1000px;
+  grid-template-rows: 10vh auto;
 
   &_wrapper {
     padding: 25px;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 3fr 4fr;
     grid-gap: 50px;
     background-color: $primary-color;
   }
