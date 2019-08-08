@@ -6,9 +6,9 @@ import * as firebase from "firebase/app";
 import './recipeCard.scss';
 
 // Components
-import Recipe from './recipe/index.jsx';
-import Modal from './modal/index.jsx';
-import Spinner from './spinner/index.jsx';
+import Recipe from './recipe/index';
+import Modal from './modal/index';
+import Spinner from './spinner/index';
 
 // Firebase intialization
 import "firebase/auth";
@@ -115,6 +115,8 @@ class RecipeCard extends React.Component {
   /**
    * This method will render Recipe component when local state
    * recipeAdded is true
+   * 
+   * @returns React Component
    */
   renderRecipe() {
     if (this.state.recipeAdded) {
@@ -131,6 +133,8 @@ class RecipeCard extends React.Component {
   /**
    * This method will render a spinner when the local state isLoading
    * is true
+   * 
+   * @returns React Component
    */
   renderSpinner() {
     if (this.state.isLoading) {
@@ -141,6 +145,8 @@ class RecipeCard extends React.Component {
   /**
    * This method will render a error modal when isRecipeNotFound local state
    * is true
+   * 
+   * @returns React Component
    */
   renderModal() {
     if (this.state.isRecipeNotFound) {

@@ -4,27 +4,19 @@
 class Utils {
 
   /**
-   * This function is to compare two unsorted arrays returns true
+   * This method is to compare two unsorted arrays returns true
    * when the array are equal otherwise returns false
    */
-  compare(arr1, arr2) {
-    let finalArray = [];
-    if (arr1.length !== arr2.length) {
-      return false;
-    } else {
+  static compare(arr1, arr2) {
+    if (arr1.length === arr2.length) {
       arr1.forEach(elemArr1 => {
-        arr2.forEach(elemArr2 => {
-          if (elemArr1 === elemArr2) {
-            finalArray.push(elemArr1);
-          }
-        });
+        if (!arr2.includes(elemArr1)) {
+          return false;
+        }
       });
-
-      if (isEqual(finalArray, arr1) && finalArray.length !== 0) {
-        return true;
-      }
-      return false;
+      return true;
     }
+    return false;
   }
 }
 

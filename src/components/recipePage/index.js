@@ -2,9 +2,9 @@ import React from 'react';
 import * as firebase from "firebase/app";
 
 // Components
-import Header from '../header/index.jsx';
-import Spinner from '../recipeCard/spinner/index.jsx';
-import IngridientItem from '../searchCard/ingridientList/ingridientItem/index.jsx';
+import Header from '../header/index';
+import Spinner from '../recipeCard/spinner/index';
+import IngridientItem from '../searchCard/ingridientList/ingridientItem/index';
 
 // Styles
 import './recipePage.scss';
@@ -23,6 +23,10 @@ if (!firebase.apps.length) {
 
 let db = firebase.firestore();
 
+/**
+ * This class is the RecipePage component, will render the page with the 
+ * recipe getted from the url param passed
+ */
 class RecipePage extends React.Component {
   constructor() {
     super();
@@ -41,16 +45,37 @@ class RecipePage extends React.Component {
       });
   }
 
+  /**
+   * This method will render a Spinner when the local state isLoading is True
+   * 
+   * @returns React Component 
+   */
   renderSpinner() {
     if (this.state.isLoading) {
       return <Spinner />;
     }
   }
 
+  /**
+   * This method will render a li JSX element with the steps of the recipe
+   * 
+   * @param {String} value 
+   * @param {Number} key
+   * 
+   * @returns JSX Element 
+   */
   renderSteps(value, key) {
     return <li key={key}>{value}</li>
   }
 
+  /**
+   * This method will render the ingridient item of the current recipe
+   * 
+   * @param {String} value 
+   * @param {Number} key
+   * 
+   * @returns React Component 
+   */
   renderIngridients(value, key) {
     return <IngridientItem key={key} ingridientName={value} />;
   }
@@ -73,6 +98,10 @@ class RecipePage extends React.Component {
               {
                 label: 'Home',
                 path: '/',
+              },
+              {
+                label: 'Recipe Gallery',
+                path: '/gallery',
               },
             ]}
           />

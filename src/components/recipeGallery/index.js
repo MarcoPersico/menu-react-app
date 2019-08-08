@@ -2,9 +2,9 @@ import React from 'react';
 import * as firebase from "firebase/app";
 
 // Components
-import Header from '../header/index.jsx';
-import Recipe from '../recipeCard/recipe/index.jsx';
-import Spinner from '../recipeCard/spinner/index.jsx';
+import Header from '../header/index';
+import Recipe from '../recipeCard/recipe/index';
+import Spinner from '../recipeCard/spinner/index';
 
 // Styles
 import './recipeGallery.scss';
@@ -22,6 +22,10 @@ if (!firebase.apps.length) {
 }
 let db = firebase.firestore();
 
+/**
+ * This class is the RecipeGallery component, will render the gallery
+ * with all the recipes received from firebase database
+ */
 class RecipeGallery extends React.Component {
   constructor() {
     super();
@@ -33,6 +37,10 @@ class RecipeGallery extends React.Component {
     this.getRecipes();
   }
 
+  /**
+   * This method will make a call to the database and pull all the recipes
+   * that the database contains
+   */
   getRecipes() {
     let recipes = [];
     this.setState({ isLoading: true });
@@ -50,10 +58,22 @@ class RecipeGallery extends React.Component {
       });
   }
 
+  /**
+   * This method will render a Recipe component with the value that has as parameter
+   * 
+   * @param {Object} value
+   * 
+   * @returns React Component 
+   */
   renderRecipe(value) {
     return <Recipe key={value.id} recipeData={value} />
   }
 
+  /**
+   * This method will render a Spinner when the local state isLoading is True
+   * 
+   * @returns React Component 
+   */
   renderSpinner() {
     if (this.state.isLoading) {
       return <Spinner />;

@@ -3,6 +3,7 @@
 
 # builds
 /dist
+/docs
 
 npm-debug.log
 .DS_Store

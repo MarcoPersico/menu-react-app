@@ -18,6 +18,19 @@ export default function Recipe(props) {
     backgroundRepeat: 'no-repeat'
   }
 
+  /**
+   * This method will render the steps of the recipe recieved
+   * The element rendered is a <li> JSX element
+   * 
+   * @param {String} value 
+   * @param {Number} key
+   * 
+   * @returns JSX Element 
+   */
+  const renderSteps = (value, key) => {
+    return <li key={key}>{value}</li>;
+  }
+
   return (
     <Link to={`/recipe/${recipeData.id}`}>
       <div className='menu_recipe'>
@@ -25,9 +38,7 @@ export default function Recipe(props) {
         <div className='menu_recipe_steps'>
           <h2>{recipeData.name}</h2>
           <ol>
-            {recipeData.steps.map(
-              value => <li key={recipeData.steps.indexOf(value)}>{value}</li>
-            )}
+            {recipeData.steps.map(renderSteps)}
           </ol>
         </div>
       </div>
