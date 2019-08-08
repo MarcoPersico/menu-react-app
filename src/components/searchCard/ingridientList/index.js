@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import IngridientItem from './ingridientItem/index';
+import IngridientItem from '../../commons/ingridientItem/index';
 
 // Styles
 import './ingridientList.scss';

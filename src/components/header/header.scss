@@ -46,5 +46,10 @@
       width: 35%;
       justify-self: end;
     }
+
+    &_brand {
+      justify-self: start;
+      padding-left: 25px;
+    }
   }
 }

@@ -3,8 +3,8 @@ import * as firebase from "firebase/app";
 
 // Components
 import Header from '../header/index';
-import Spinner from '../recipeCard/spinner/index';
-import IngridientItem from '../searchCard/ingridientList/ingridientItem/index';
+import Spinner from '../commons/spinner/index';
+import IngridientItem from '../commons/ingridientItem/index';
 
 // Styles
 import './recipePage.scss';
