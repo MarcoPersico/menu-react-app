@@ -6,9 +6,9 @@ import * as firebase from "firebase/app";
 import './recipeCard.scss';
 
 // Components
-import Recipe from './recipe/index';
-import Modal from './modal/index';
-import Spinner from './spinner/index';
+import Recipe from '../commons/recipe/index';
+import Spinner from '../commons/spinner/index';
+import Modal from '../commons/modal/index';
 
 // Firebase intialization
 import "firebase/auth";
