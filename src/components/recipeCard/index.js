@@ -44,9 +44,12 @@ class RecipeCard extends React.Component {
         thumbnail: '',
         ingridients: '',
         steps: '',
-      }
+      },
+      error: false,
+      errorMessage: 'sdas',
     }
     this.updateModalStatus = this.updateModalStatus.bind(this);
+    this.renderError = this.renderError.bind(this);
   }
 
   componentWillMount() {
@@ -63,10 +66,28 @@ class RecipeCard extends React.Component {
               recipeAdded: true,
               isLoading: false
             });
+          })
+          .catch(error => {
+            this.setState({
+              error: true,
+              errorMessage: error.message,
+              isLoading: false
+            });
+            this.renderError;
           });
-      }).catch(error => {
-        console.log(error);
-      });
+      })
+  }
+
+  renderError() {
+    if (this.state.error) {
+      return (
+        <p className='menu_recipeCard_error'>
+          The next error happened:&nbsp;
+        <strong>{this.state.errorMessage}</strong>&nbsp;
+            Please reload the page
+        </p>
+      );
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -169,6 +190,7 @@ class RecipeCard extends React.Component {
   render() {
     return (
       <div className='menu_recipeCard'>
+        {this.renderError()}
         {this.renderSpinner()}
         {this.renderModal()}
         {this.renderRecipe()}
