@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import * as firebase from "firebase/app";
 
 // Components
@@ -31,17 +32,34 @@ class RecipePage extends React.Component {
   constructor() {
     super();
 
-    this.state = { isLoading: false, recipe: false };
+    this.state = {
+      isLoading: false,
+      recipeNotFound: false,
+      recipe: {
+        id: 0,
+        name: '',
+        thumbnail: '',
+        ingridients: [],
+        steps: [],
+      }
+    };
   }
 
   componentDidMount() {
     this.setState({ isLoading: true });
     db.collection('recipes').doc(this.props.match.params.id).get()
       .then((doc) => {
-        this.setState({ recipe: doc.data() });
-      })
-      .finally(() => {
-        this.setState({ isLoading: false });
+        if (doc.data()) {
+          this.setState({
+            recipe: doc.data(),
+            isLoading: false
+          });
+        } else {
+          this.setState({
+            recipeNotFound: true,
+            isLoading: false,
+          });
+        }
       });
   }
 
@@ -81,7 +99,7 @@ class RecipePage extends React.Component {
   }
 
   render() {
-    if (this.state.recipe) {
+    if (!this.state.recipeNotFound) {
       const { recipe } = this.state;
       const thumbnail = {
         backgroundImage: `url(${recipe.thumbnail})`,
@@ -121,8 +139,9 @@ class RecipePage extends React.Component {
           </div>
         </div>
       );
+    } else {
+      return <Redirect to='/' />;
     }
-    return <Spinner />;
   }
 }
 
