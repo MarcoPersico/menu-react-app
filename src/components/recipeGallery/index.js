@@ -63,7 +63,7 @@ class RecipeGallery extends React.Component {
    * 
    * @param {Object} value
    * 
-   * @returns React Component 
+   * @return React Component 
    */
   renderRecipe(value) {
     return <Recipe key={value.id} recipeData={value} />
@@ -72,7 +72,7 @@ class RecipeGallery extends React.Component {
   /**
    * This method will render a Spinner when the local state isLoading is True
    * 
-   * @returns React Component 
+   * @return React Component 
    */
   renderSpinner() {
     if (this.state.isLoading) {

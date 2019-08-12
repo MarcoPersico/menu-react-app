@@ -32,7 +32,7 @@ class IngridientList extends React.Component {
    * 
    * @param {Object} value 
    * 
-   * @returns React Element
+   * @return React Element
    */
   renderIngridientItem(value) {
     return <IngridientItem key={value.value} ingridientName={value.label} />

@@ -16,7 +16,7 @@ export default function Header(props) {
    * @param {Object} value 
    * @param {Number} key
    * 
-   * @returns React Component
+   * @return React Component
    */
   const renderAnchorItems = (value, key) => {
     return <Link key={key} to={value.path}>{value.label}</Link>;

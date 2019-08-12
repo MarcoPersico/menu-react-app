@@ -78,6 +78,11 @@ class RecipeCard extends React.Component {
       })
   }
 
+  /**
+   * This method will render an error message when the local state error is true
+   *
+   * @return  {JSX Element}
+   */
   renderError() {
     if (this.state.error) {
       return (
@@ -137,7 +142,7 @@ class RecipeCard extends React.Component {
    * This method will render Recipe component when local state
    * recipeAdded is true
    * 
-   * @returns React Component
+   * @return React Component
    */
   renderRecipe() {
     if (this.state.recipeAdded) {
@@ -155,7 +160,7 @@ class RecipeCard extends React.Component {
    * This method will render a spinner when the local state isLoading
    * is true
    * 
-   * @returns React Component
+   * @return React Component
    */
   renderSpinner() {
     if (this.state.isLoading) {
@@ -167,7 +172,7 @@ class RecipeCard extends React.Component {
    * This method will render a error modal when isRecipeNotFound local state
    * is true
    * 
-   * @returns React Component
+   * @return React Component
    */
   renderModal() {
     if (this.state.isRecipeNotFound) {
