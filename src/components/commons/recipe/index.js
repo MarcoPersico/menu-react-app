@@ -25,7 +25,7 @@ export default function Recipe(props) {
    * @param {String} value 
    * @param {Number} key
    * 
-   * @returns JSX Element 
+   * @return JSX Element 
    */
   const renderSteps = (value, key) => {
     return <li key={key}>{value}</li>;

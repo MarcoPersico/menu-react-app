@@ -66,7 +66,7 @@ class RecipePage extends React.Component {
   /**
    * This method will render a Spinner when the local state isLoading is True
    * 
-   * @returns React Component 
+   * @return React Component 
    */
   renderSpinner() {
     if (this.state.isLoading) {
@@ -80,7 +80,7 @@ class RecipePage extends React.Component {
    * @param {String} value 
    * @param {Number} key
    * 
-   * @returns JSX Element 
+   * @return JSX Element 
    */
   renderSteps(value, key) {
     return <li key={key}>{value}</li>
@@ -92,7 +92,7 @@ class RecipePage extends React.Component {
    * @param {String} value 
    * @param {Number} key
    * 
-   * @returns React Component 
+   * @return React Component 
    */
   renderIngridients(value, key) {
     return <IngridientItem key={key} ingridientName={value} />;
