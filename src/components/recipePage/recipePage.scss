@@ -1,4 +1,4 @@
-@import '../../assests/styles/base.scss';
+@import "../../assests/styles/base.scss";
 
 .menu_recipePage {
   min-height: 100vh;
@@ -12,14 +12,17 @@
     display: grid;
     grid-template-rows: 1fr 2fr;
   }
-  
+
   &_dataWrapper {
     padding: 0 5px;
+    -webkit-box-shadow: 2px 0px 5px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 2px 0px 5px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 0px 5px 2px rgba(0, 0, 0, 0.3);
   }
 
   @include medium-screen() {
     &_recipeWrapper {
-      grid-template-rows: 6fr 3fr;
+      grid-template-rows: 530px 3fr;
     }
 
     &_dataWrapper {
